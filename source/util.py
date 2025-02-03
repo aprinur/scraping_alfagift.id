@@ -9,7 +9,7 @@ import datetime
 driver = webdriver.Chrome()
 
 
-def press_button(tag):
+def press_button(tag: str):
     try:
         next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, tag)))
         driver.execute_script("arguments[0].click();", next_button)
