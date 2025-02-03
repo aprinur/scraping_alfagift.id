@@ -1,10 +1,12 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+import os
 import time
 import pandas
 import datetime
+import openpyxl
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome()
 
@@ -30,10 +32,14 @@ def get_current_url():
 
 
 def save_to_file(product, filename):
+    save_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
     date = datetime.datetime.now().strftime('%d_%B_%Y')
+    excel_path = os.path.join(save_dir, f'{filename}_{date}.xlsx')
+    csv_path = os.path.join(save_dir, f'{filename}_{date}.csv')
     df = pandas.DataFrame(product)
-    df.to_excel(f'{filename}_{date}.xlsx', index=False)
-    df.to_csv(fr'D:\Github\aprinur\Web_Scraping\alfagift_id\{filename}_{date}.csv', index=False)
+
+    df.to_excel(excel_path, index=False, engine='openpyxl')
+    df.to_csv(csv_path, index=False)
 
 
 def wait_emergence(class_name):
