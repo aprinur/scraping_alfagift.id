@@ -71,41 +71,44 @@ def active_page():
 
 
 def main():
-    # Open main URL
-    url = URL
-    html = get_html(url)
-    soup = Soup(html)
-    category_urls = soup.scrape_category_url()   # Scrape category urls from main page
-    result = []
+    try:
+        # Open main URL
+        url = URL
+        html = get_html(url)
+        soup = Soup(html)
+        category_urls = soup.scrape_category_url()   # Scrape category urls from main page
+        result = []
 
-    # list to contain product url
-    product_urls = []
-    while True:
-        # Loop through each category URL
-        for category_url in category_urls[:3]:
-            print(f'Opening category: {category_url}')
-            html = get_html(category_url)
-            product_page = Soup(html)
-            product_urls.append(product_page.scrape_product_url())
-            while True:
-                press_button('//button[@role="menuitem" and @aria-label="Go to next page" and @class="page-link"]')
-                time.sleep(5)
-                product_page = Soup(get_current_url())
+        # list to contain product url
+        product_urls = []
+        while True:
+            # Loop through each category URL
+            for category_url in category_urls[:3]:
+                print(f'Opening category: {category_url}')
+                html = get_html(category_url)
+                product_page = Soup(html)
                 product_urls.append(product_page.scrape_product_url())
+                while True:
+                    press_button('//button[@role="menuitem" and @aria-label="Go to next page" and @class="page-link"]')
+                    time.sleep(5)
+                    product_page = Soup(get_current_url())
+                    product_urls.append(product_page.scrape_product_url())
 
-                if product_page.scrape_active_page() == '2':
-                    break
-        # loop url in product_urls
-        product_urls = [element for innerlist in product_urls for element in innerlist]
-        for product_url in product_urls:
+                    if product_page.scrape_active_page() == '2':
+                        break
+            # loop url in product_urls
+            product_urls = [element for innerlist in product_urls for element in innerlist]
+            for product_url in product_urls:
 
-            html = get_html(product_url)
-            soup = Soup(html)
-            time.sleep(5)
-            result.append(soup.scrape_product())
+                html = get_html(product_url)
+                soup = Soup(html)
+                time.sleep(5)
+                result.append(soup.scrape_product())
 
-        save_to_file(result, 'Product_from_first_3_category_and_first_2_page')
-        break
+            save_to_file(result, 'Product from alfagift.id')
+            break
+    except Exception as e:
+        print(f'Error scraping: {e}')
 
 
 if __name__ == '__main__':
