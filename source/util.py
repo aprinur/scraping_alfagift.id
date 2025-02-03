@@ -39,18 +39,3 @@ def save_to_file(product, filename):
 def wait_emergence(class_name):
     return WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, f"{class_name}")))
 
-
-"""
-press_button(".page-link[aria-label='Go to next page']")
-
-
-'.'                            = indicates a css class selector
-'page-link'                    = refers to an element that has the class='page-link'
-'[]'                           = to target elements with specific attributes
-'aria-label='Go to next page'' = an attribute selector that finds elements where the 
-                                 aria-label attribute exactly matches 'Go to next page'
-
-.page-link[aria-label='Go to next page'] this is a compound selector combining both a 
-class and an attribute, it selects an element that both has the class="page-link" and 
-has an aria-label attribute with the value 'Go to next page'                               
-"""
