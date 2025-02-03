@@ -1,7 +1,7 @@
 from source.util import get_html, press_button, get_current_url, save_to_file
 from source.soup import Soup
 import time
-from source.__init__ import URL
+from source import URL
 
 
 def get_item():
@@ -92,15 +92,13 @@ def main():
                 time.sleep(5)
                 product_page = Soup(get_current_url())
                 product_urls.append(product_page.scrape_product_url())
-                print(product_urls)
-                # if product_page.final_page():
-                #     break
+
                 if product_page.scrape_active_page() == '2':
                     break
         # loop url in product_urls
         product_urls = [element for innerlist in product_urls for element in innerlist]
         for product_url in product_urls:
-            print(product_url)
+
             html = get_html(product_url)
             soup = Soup(html)
             time.sleep(5)
