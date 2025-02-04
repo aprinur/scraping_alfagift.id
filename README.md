@@ -17,7 +17,7 @@ This program use Selenium to get the html and navigate through pages, along with
 
 ## How to run this program on your device?
 1. First of all, you need [Python](https://www.python.org/), some IDE installed in your device and a [chromedriver](https://developer.chrome.com/docs/chromedriver/downloads) that match your chrome's version in your PATH environment variable
-2. After download the file, open your ide, open the project and create a virtual environment (recommended)
+2. After download the file, open your IDE, open the project and create a virtual environment (recommended)
 3. Install dependencies from requirements.txt
    ```
    pip install requirements.txt
