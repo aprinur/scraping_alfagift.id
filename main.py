@@ -83,7 +83,7 @@ def main():
         product_urls = []
         while True:
             # Loop through each category URL
-            for category_url in category_urls[:3]:
+            for category_url in category_urls[:]:  # amount category
                 print(f'Opening category: {category_url}')
                 html = get_html(category_url)
                 product_page = Soup(html)
@@ -98,14 +98,14 @@ def main():
                         break
             # loop url in product_urls
             product_urls = [element for innerlist in product_urls for element in innerlist]
-            for product_url in product_urls:
+            for product_url in product_urls[:]:  # amount of file
 
                 html = get_html(product_url)
                 soup = Soup(html)
                 time.sleep(5)
                 result.append(soup.scrape_product())
 
-            save_to_file(result, 'Product from alfagift.id')
+            save_to_file(result, 'Product from alfagift.id')  # filename
             break
     except Exception as e:
         print(f'Error scraping: {e}')

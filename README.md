@@ -1,6 +1,6 @@
 # Alfagift Scraper
 
-If you need data of product from alfagift.com, i can't help because i won't give the fish for free, but instead i will show you how to use the fishing rod.
+If you need data of product from alfagift.com, I can't help because I won't give the fish for free, but instead I will show you how to use the fishing rod.
 But if you still want the data without running the program, you can contact me.
 
 <br>
@@ -22,13 +22,13 @@ This program use Selenium to get the html and navigate through pages, along with
    ```
    pip install requirements.txt
    ```
-4. Open file main.py and search for line number 86, add a number after colon to limit the amount of pages to scrape, or leave it empty to scrape all of the category
+4. Open file main.py and search for line number 86, add a number after colon to limit the amount of pages to scrape, or leave it empty to scrape all the category
    ```
    for category_url in category_urls[:]:
    ```
-5. Next, search for line number 101 and do the same to limit the amount of products to scrape, or leave it empty to scrape all of the product information
+5. Next, search for line number 101 and do the same to limit the amount of products to scrape, or leave it empty to scrape all the product information
    ```
    for product_url in product_urls[:]:
    ```
-7. Finally change the filename in line number 108 to your desired name
-8. Run main.py
+6. Finally, change the filename in line number 108 to your desired name
+7. Run main.py
